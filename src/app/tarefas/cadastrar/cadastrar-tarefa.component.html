@@ -1,0 +1,26 @@
+<h1>Cadastrar tarefa</h1>
+
+<div class="well">
+  <form #formTarefa="ngForm"> <!-- '#' serve para disponibilizar uma variável local para o Angular conseguir acessá-lo e validá-lo -->
+    <div class="form-group">
+      <label for="nome">Tarefa:</label>          <!-- operador '[()]' vai garantir que o 'tarefa.nome' tenha o valor do ngModel digitado na tela | criou variável local 'nome' -->
+      <input type="text" class="form-control" id="nome" name="nome" [(ngModel)]="tarefa.nome" #nome="ngModel" minlength="5" required>
+      <div *ngIf="nome.errors && (nome.dirty || nome.touched)" class="alert alert-danger"> <!-- essa div é só para aparecer o fundo vermelho se der erro -->
+    <!-- '.dirty' e '.touched' são classes do Angular que são acionadas quando se entra em um atributo e sai dele (no caso, servem para soltar o erro só quando sair do input)-->
+        <div [hidden]="!nome.errors.required"> <!-- Deixa escondido se não tiver digitado (o 'required' é quem manda nisso nesse caso)-->
+          Digite a tarefa.
+        </div>
+        <div [hidden]="!nome.errors.minlength">
+          A tarefa deve conter ao menos 5 caracteres.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group text-center">
+      <input type="submit" class="btn btn-success" (click)="cadastrar()" value="Cadastrar" [disabled]="!formTarefa.form.valid">
+      <a [routerLink]="['/tarefas']" class="btn btn-default">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Voltar
+      </a>
+    </div>
+  </form>
+</div>

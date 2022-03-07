@@ -3,12 +3,23 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 
+import { AppRoutingModule } from './app-routing.module';
+import { DashboardModule } from './dashboard';
+import { CalculadoraModule } from './calculadora';
+import { TarefasModule } from './tarefas';
+import { JogoDaVelhaModule } from './jogo-da-velha';
+
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    DashboardModule,
+    CalculadoraModule,
+    TarefasModule,
+    JogoDaVelhaModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
